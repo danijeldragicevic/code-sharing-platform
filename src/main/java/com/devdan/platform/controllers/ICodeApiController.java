@@ -11,5 +11,8 @@ import java.util.Map;
 @RequestMapping(path = "/api/code")
 public interface ICodeApiController {
     @PostMapping(path = "/new")
-    ResponseEntity<Map<String, String>> createSnippet(@RequestBody @Valid CodeDTO codeDTO);
+    ResponseEntity<Map<String, String>> createCodeSnippet(@RequestBody @Valid CodeDTO codeDTO);
+    
+    @GetMapping("/{id}")
+    ResponseEntity<CodeDTO> getCodeSnippet(@PathVariable String id);
 }

@@ -18,11 +18,19 @@ public class CodeApiControllerImpl implements ICodeApiController {
     private final ICodeApiService service;
     
     @Override
-    public ResponseEntity<Map<String, String>> createSnippet(CodeDTO codeDTO) {
+    public ResponseEntity<Map<String, String>> createCodeSnippet(CodeDTO codeDTO) {
         Code code = mapper.mapToModel(codeDTO);
-        service.save(code);
+        service.saveCodeSnippet(code);
         codeDTO = mapper.mapToDto(code);
         
         return ResponseEntity.ok(Map.of("code", codeDTO.getId()));
+    }
+
+    @Override
+    public ResponseEntity<CodeDTO> getCodeSnippet(String id) {
+        Code code = service.findCodeSnippetById(id);
+        CodeDTO codeDTO = mapper.mapToDto(code);
+        
+        return ResponseEntity.ok(codeDTO);
     }
 }

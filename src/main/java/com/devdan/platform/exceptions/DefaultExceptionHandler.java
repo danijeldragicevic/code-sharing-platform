@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -23,6 +24,12 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(badRequestResponse(ex, request), HttpStatus.BAD_REQUEST);
     }
     
+    @ExceptionHandler(CodeSnippetDoesNotExistsException.class)
+    public ResponseEntity<Object> handleCodeSnippetDoesNotExistsException(WebRequest request) {
+        
+        return new ResponseEntity<>(notFoundResponse(request), HttpStatus.NOT_FOUND);
+    }
+    
     private ApiError badRequestResponse(MethodArgumentNotValidException ex, WebRequest request) {
         ApiError error = new ApiError();
         error.setTime(util.formatDateTime(util.getCurrentDateTime()));
@@ -31,6 +38,17 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
         error.setMessage(ex.getFieldError().getDefaultMessage());
         error.setPath(((ServletWebRequest)request).getRequest().getRequestURI());
      
+        return error;
+    }
+    
+    private ApiError notFoundResponse(WebRequest request) {
+        ApiError error = new ApiError();
+        error.setTime(util.formatDateTime(util.getCurrentDateTime()));
+        error.setStatus(404);
+        error.setError("Not Found");
+        error.setMessage("Code snippet with requested id does not exists!");
+        error.setPath(((ServletWebRequest)request).getRequest().getRequestURI());
+
         return error;
     }
 }
