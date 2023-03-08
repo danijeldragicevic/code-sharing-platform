@@ -6,22 +6,20 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name = "codes")
-public class Code {
+@Entity(name = "code_snippets")
+public class CodeSnippet {
     @Id
     @Column(name = "id")
     private String id;
     
-    @Column(name = "code_snippet")
-    private String codeSnippet;
+    @Column(name = "code")
+    private String code;
     
     @Column(name = "time_created")
     private LocalDateTime timeCreated;

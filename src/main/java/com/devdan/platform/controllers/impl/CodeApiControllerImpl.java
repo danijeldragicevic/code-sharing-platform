@@ -1,14 +1,16 @@
 package com.devdan.platform.controllers.impl;
 
 import com.devdan.platform.controllers.ICodeApiController;
-import com.devdan.platform.dtos.CodeDTO;
+import com.devdan.platform.dtos.CodeSnippetDTO;
 import com.devdan.platform.mappers.IModelMapper;
-import com.devdan.platform.models.Code;
+import com.devdan.platform.models.CodeSnippet;
 import com.devdan.platform.services.ICodeApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -18,19 +20,30 @@ public class CodeApiControllerImpl implements ICodeApiController {
     private final ICodeApiService service;
     
     @Override
-    public ResponseEntity<Map<String, String>> createCodeSnippet(CodeDTO codeDTO) {
-        Code code = mapper.mapToModel(codeDTO);
-        service.saveCodeSnippet(code);
-        codeDTO = mapper.mapToDto(code);
+    public ResponseEntity<Map<String, String>> createCodeSnippet(CodeSnippetDTO codeSnippetDTO) {
+        CodeSnippet codeSnippet = mapper.mapToModel(codeSnippetDTO);
+        service.createCodeSnippet(codeSnippet);
+        codeSnippetDTO = mapper.mapToDto(codeSnippet);
         
-        return ResponseEntity.ok(Map.of("code", codeDTO.getId()));
+        return ResponseEntity.ok(Map.of("code", codeSnippetDTO.getId()));
     }
 
     @Override
-    public ResponseEntity<CodeDTO> getCodeSnippet(String id) {
-        Code code = service.findCodeSnippetById(id);
-        CodeDTO codeDTO = mapper.mapToDto(code);
+    public ResponseEntity<CodeSnippetDTO> getCodeSnippetById(String id) {
+        CodeSnippet codeSnippet = service.getCodeSnippetById(id);
+        CodeSnippetDTO codeSnippetDTO = mapper.mapToDto(codeSnippet);
         
-        return ResponseEntity.ok(codeDTO);
+        return ResponseEntity.ok(codeSnippetDTO);
+    }
+
+    @Override
+    public ResponseEntity<List<CodeSnippetDTO>> getLatestCodeSnippets() {
+        List<CodeSnippet> latestCodeSnippets = service.getLatestCodeSnippets();
+        List<CodeSnippetDTO> latestCodeSnippetsDTOs = new ArrayList<>();
+        for (CodeSnippet cs: latestCodeSnippets) {
+            latestCodeSnippetsDTOs.add(mapper.mapToDto(cs));
+        }
+        
+        return ResponseEntity.ok(latestCodeSnippetsDTOs);
     }
 }

@@ -1,41 +1,39 @@
 package com.devdan.platform.mappers.impl;
 
-import com.devdan.platform.dtos.CodeDTO;
+import com.devdan.platform.dtos.CodeSnippetDTO;
 import com.devdan.platform.mappers.IModelMapper;
-import com.devdan.platform.models.Code;
+import com.devdan.platform.models.CodeSnippet;
 import com.devdan.platform.utils.Util;
-
-import java.util.UUID;
 
 public class ModelMapperImpl implements IModelMapper {
     
     @Override
-    public Code mapToModel(CodeDTO codeDTO) {
-        Code code = new Code();
-        code.setId(Util.getNewUUID());
-        code.setCodeSnippet(codeDTO.getCodeSnippet());
-        code.setTimeCreated(Util.getCurrentDateTime());
-        if (codeDTO.getViewsAllowed() > 0) {
-            code.setViewsAllowed(codeDTO.getViewsAllowed());
-            code.setViewLimited(true);
+    public CodeSnippet mapToModel(CodeSnippetDTO codeSnippetDTO) {
+        CodeSnippet codeSnippet = new CodeSnippet();
+        codeSnippet.setId(Util.getNewUUID());
+        codeSnippet.setCode(codeSnippetDTO.getCode());
+        codeSnippet.setTimeCreated(Util.getCurrentDateTime());
+        if (codeSnippetDTO.getViewsAllowed() > 0) {
+            codeSnippet.setViewsAllowed(codeSnippetDTO.getViewsAllowed());
+            codeSnippet.setViewLimited(true);
         }
-        if (codeDTO.getSecondsAllowed() > 0) {
-            code.setSecondsAllowed(codeDTO.getSecondsAllowed());
-            code.setTimeLimited(true);
+        if (codeSnippetDTO.getSecondsAllowed() > 0) {
+            codeSnippet.setSecondsAllowed(codeSnippetDTO.getSecondsAllowed());
+            codeSnippet.setTimeLimited(true);
         }
         
-        return code;
+        return codeSnippet;
     }
 
     @Override
-    public CodeDTO mapToDto(Code code) {
-        CodeDTO codeDTO = new CodeDTO();
-        codeDTO.setId(code.getId());
-        codeDTO.setCodeSnippet(code.getCodeSnippet());
-        codeDTO.setTimeCreated(Util.formatDateTime(code.getTimeCreated()));
-        codeDTO.setSecondsAllowed(code.getSecondsAllowed());
-        codeDTO.setViewsAllowed(code.getViewsAllowed());
+    public CodeSnippetDTO mapToDto(CodeSnippet codeSnippet) {
+        CodeSnippetDTO codeSnippetDTO = new CodeSnippetDTO();
+        codeSnippetDTO.setId(codeSnippet.getId());
+        codeSnippetDTO.setCode(codeSnippet.getCode());
+        codeSnippetDTO.setTimeCreated(Util.formatDateTime(codeSnippet.getTimeCreated()));
+        codeSnippetDTO.setSecondsAllowed(codeSnippet.getSecondsAllowed());
+        codeSnippetDTO.setViewsAllowed(codeSnippet.getViewsAllowed());
         
-        return codeDTO;
+        return codeSnippetDTO;
     }
 }

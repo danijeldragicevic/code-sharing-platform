@@ -9,13 +9,13 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CodeDTO {
+public class CodeSnippetDTO {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String id;
     
     @NotBlank(message = "Property code can not be empty!")
     @JsonProperty(value = "code")
-    private String codeSnippet;
+    private String code;
     
     @JsonProperty(value = "date")
     private String timeCreated;

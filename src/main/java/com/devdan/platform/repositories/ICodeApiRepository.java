@@ -1,13 +1,11 @@
 package com.devdan.platform.repositories;
 
-import com.devdan.platform.models.Code;
+import com.devdan.platform.models.CodeSnippet;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.Optional;
+import org.springframework.stereotype.Repository;
+import java.util.List;
 
-public interface ICodeApiRepository extends JpaRepository<Code, String> {
-    @Override
-    Code save(Code entity);
-
-    @Override
-    Optional<Code> findById(String s);
+@Repository
+public interface ICodeApiRepository extends JpaRepository<CodeSnippet, String> {
+    List<CodeSnippet> findTop10ByTimeLimitedIsFalseOrViewLimitedIsFalseOrderByTimeCreatedDesc();
 }
