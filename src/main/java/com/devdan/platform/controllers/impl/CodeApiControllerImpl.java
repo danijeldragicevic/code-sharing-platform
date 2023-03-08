@@ -25,7 +25,7 @@ public class CodeApiControllerImpl implements ICodeApiController {
         service.createCodeSnippet(codeSnippet);
         codeSnippetDTO = mapper.mapToDto(codeSnippet);
         
-        return ResponseEntity.ok(Map.of("code", codeSnippetDTO.getId()));
+        return ResponseEntity.ok(Map.of("id", codeSnippetDTO.getId()));
     }
 
     @Override
