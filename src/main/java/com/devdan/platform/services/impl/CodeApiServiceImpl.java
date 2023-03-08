@@ -5,9 +5,12 @@ import com.devdan.platform.models.CodeSnippet;
 import com.devdan.platform.repositories.ICodeApiRepository;
 import com.devdan.platform.services.ICodeApiService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 public class CodeApiServiceImpl implements ICodeApiService {
     private final ICodeApiRepository repository;
@@ -29,6 +32,6 @@ public class CodeApiServiceImpl implements ICodeApiService {
 
     @Override
     public List<CodeSnippet> getLatestCodeSnippets() {
-        return repository.findTop10ByTimeLimitedIsFalseOrViewLimitedIsFalseOrderByTimeCreatedDesc();
+        return repository.findTop10ByTimeLimitedIsFalseAndViewLimitedIsFalseOrderByTimeCreatedDesc();
     }
 }

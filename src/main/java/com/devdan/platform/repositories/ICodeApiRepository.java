@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ICodeApiRepository extends JpaRepository<CodeSnippet, String> {
-    List<CodeSnippet> findTop10ByTimeLimitedIsFalseOrViewLimitedIsFalseOrderByTimeCreatedDesc();
+    List<CodeSnippet> findTop10ByTimeLimitedIsFalseAndViewLimitedIsFalseOrderByTimeCreatedDesc();
 }
