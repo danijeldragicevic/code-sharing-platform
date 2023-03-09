@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ICodeApiRepository extends JpaRepository<CodeSnippet, String> {
+public interface ICodeSnippetRepository extends JpaRepository<CodeSnippet, String> {
     List<CodeSnippet> findTop10ByTimeLimitedIsFalseAndViewLimitedIsFalseOrderByTimeCreatedDesc();
 }

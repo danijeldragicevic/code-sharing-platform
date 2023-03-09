@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+        <title>Latest</title>
+        <link rel="stylesheet" th:href="@{/styles/codeSnippetStyle.css}">
+        <link href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.1/build/styles/default.min.css" rel="stylesheet">
+        <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.1/build/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <div>
+            <table>
+                <tr th:if="${latestCodeSnippetsDTOs.isEmpty()}">
+                    <td colspan="2">No code snippets uploaded</td>
+                </tr>
+                <tr th:each="codeSnippetDTO : ${latestCodeSnippetsDTOs}">
+                    <span id="load_date" th:text="${codeSnippetDTO.timeCreated}"/>
+                    <pre id="code_snippet">
+                        <code style="background: none;" th:text="${codeSnippetDTO.code}"/>
+                    </pre>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

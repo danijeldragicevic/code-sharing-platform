@@ -1,5 +1,6 @@
 package com.devdan.platform.exceptions;
 
+import com.devdan.platform.models.ApiError;
 import com.devdan.platform.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 @RequiredArgsConstructor
-public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
+public class _DefaultExceptionHandler extends ResponseEntityExceptionHandler {
     private final Util util;
     
     @Override
@@ -24,7 +25,7 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(badRequestResponse(ex, request), HttpStatus.BAD_REQUEST);
     }
     
-    @ExceptionHandler(CodeSnippetDoesNotExistsException.class)
+    @ExceptionHandler(CodeSnippetDoesNotExists_Exception.class)
     public ResponseEntity<Object> handleCodeSnippetDoesNotExistsException(WebRequest request) {
         
         return new ResponseEntity<>(notFoundResponse(request), HttpStatus.NOT_FOUND);

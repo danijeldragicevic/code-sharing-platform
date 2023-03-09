@@ -1,9 +1,9 @@
 package com.devdan.platform.services.impl;
 
-import com.devdan.platform.exceptions.CodeSnippetDoesNotExistsException;
+import com.devdan.platform.exceptions.CodeSnippetDoesNotExists_Exception;
 import com.devdan.platform.models.CodeSnippet;
-import com.devdan.platform.repositories.ICodeApiRepository;
-import com.devdan.platform.services.ICodeApiService;
+import com.devdan.platform.repositories.ICodeSnippetRepository;
+import com.devdan.platform.services.ICodeSnippetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +12,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CodeApiServiceImpl implements ICodeApiService {
-    private final ICodeApiRepository repository;
+public class CodeSnippetServiceImpl implements ICodeSnippetService {
+    private final ICodeSnippetRepository repository;
     
     @Override
     public CodeSnippet createCodeSnippet(CodeSnippet snippet) {
@@ -21,12 +21,12 @@ public class CodeApiServiceImpl implements ICodeApiService {
     }
 
     @Override
-    public CodeSnippet getCodeSnippetById(String id) throws CodeSnippetDoesNotExistsException {
+    public CodeSnippet getCodeSnippetById(String id) throws CodeSnippetDoesNotExists_Exception {
         Optional<CodeSnippet> code = repository.findById(id);
         if (!code.isEmpty()) {
             return code.get();
         } else {
-            throw new CodeSnippetDoesNotExistsException();
+            throw new CodeSnippetDoesNotExists_Exception();
         }
     }
 

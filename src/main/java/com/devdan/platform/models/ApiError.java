@@ -1,4 +1,4 @@
-package com.devdan.platform.exceptions;
+package com.devdan.platform.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
