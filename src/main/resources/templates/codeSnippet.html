@@ -12,15 +12,15 @@
 <body>
 <div>
     <!--/*@thymesVar id="code" type="platform.model.entity.Code"*/-->
-    <span id="load_date" th:text="${code.date}">
+    <span id="load_date" th:text="${code.timeCreated}">
     </span>
-    <div class="restriction" th:if="${code.isViewsLimited()}">
-        <span id="views_restriction" th:text="${code.views}"></span>
+    <div class="restriction" th:if="${code.viewsAllowed > 0}">
+        <span id="views_restriction" th:text="${code.viewsAllowed}"></span>
         <span> more views allowed</span>
     </div>
-    <div class="restriction" th:if="${code.time > 0}">
+    <div class="restriction" th:if="${code.secondsAllowed > 0}">
         <span>The code will be available for </span>
-        <span id="time_restriction" th:text="${code.time}"></span>
+        <span id="time_restriction" th:text="${code.secondsAllowed}"></span>
         <span> seconds</span>
     </div>
     <pre id="code_snippet">
