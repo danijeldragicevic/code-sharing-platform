@@ -22,7 +22,7 @@ public class CodeSnippet_ApiControllerImpl implements ICodeSnippet_ApiController
     @Override
     public ResponseEntity<Map<String, String>> createCodeSnippet(CodeSnippetDTO codeSnippetDTO) {
         CodeSnippet codeSnippet = mapper.mapToModel(codeSnippetDTO);
-        service.createCodeSnippet(codeSnippet);
+        service.saveCodeSnippet(codeSnippet);
         codeSnippetDTO = mapper.mapToDto(codeSnippet);
         
         return ResponseEntity.ok(Map.of("id", codeSnippetDTO.getId()));
