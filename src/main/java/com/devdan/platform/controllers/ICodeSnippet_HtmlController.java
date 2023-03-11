@@ -1,5 +1,6 @@
 package com.devdan.platform.controllers;
 
+import com.devdan.platform.exceptions.CodeSnippetDoesNotExists_HtmlException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +12,7 @@ public interface ICodeSnippet_HtmlController {
     String createCodeSnippet(Model model);
     
     @GetMapping("/{id}")
-    String getCodeSnippetById(Model model, @PathVariable("id") String id);
+    String getCodeSnippetById(Model model, @PathVariable("id") String id) throws CodeSnippetDoesNotExists_HtmlException;
     
     @GetMapping("/latest")
     String getLatestCodeSnippets(Model model);

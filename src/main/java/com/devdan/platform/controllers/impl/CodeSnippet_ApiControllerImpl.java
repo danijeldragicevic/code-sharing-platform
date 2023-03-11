@@ -2,6 +2,8 @@ package com.devdan.platform.controllers.impl;
 
 import com.devdan.platform.controllers.ICodeSnippet_ApiController;
 import com.devdan.platform.dtos.CodeSnippetDTO;
+import com.devdan.platform.exceptions.CodeSnippetDoesNotExists_APIException;
+import com.devdan.platform.exceptions.CodeSnippetDoesNotExists_Exception;
 import com.devdan.platform.mappers.IModelMapper;
 import com.devdan.platform.models.CodeSnippet;
 import com.devdan.platform.services.ICodeSnippetService;
@@ -29,11 +31,15 @@ public class CodeSnippet_ApiControllerImpl implements ICodeSnippet_ApiController
     }
 
     @Override
-    public ResponseEntity<CodeSnippetDTO> getCodeSnippetById(String id) {
-        CodeSnippet codeSnippet = service.getCodeSnippetById(id);
-        CodeSnippetDTO codeSnippetDTO = mapper.mapToDto(codeSnippet);
-        
-        return ResponseEntity.ok(codeSnippetDTO);
+    public ResponseEntity<CodeSnippetDTO> getCodeSnippetById(String id) throws CodeSnippetDoesNotExists_APIException {
+        try {
+            CodeSnippet codeSnippet = service.getCodeSnippetById(id);
+            CodeSnippetDTO codeSnippetDTO = mapper.mapToDto(codeSnippet);
+
+            return ResponseEntity.ok(codeSnippetDTO);
+        } catch (CodeSnippetDoesNotExists_Exception e) {
+            throw new CodeSnippetDoesNotExists_APIException();
+        }
     }
 
     @Override

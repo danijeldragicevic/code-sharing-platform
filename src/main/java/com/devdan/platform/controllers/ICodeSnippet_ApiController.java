@@ -1,6 +1,7 @@
 package com.devdan.platform.controllers;
 
 import com.devdan.platform.dtos.CodeSnippetDTO;
+import com.devdan.platform.exceptions.CodeSnippetDoesNotExists_APIException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public interface ICodeSnippet_ApiController {
     ResponseEntity<Map<String, String>> createCodeSnippet(@RequestBody @Valid CodeSnippetDTO codeSnippetDTO);
     
     @GetMapping("/{id}")
-    ResponseEntity<CodeSnippetDTO> getCodeSnippetById(@PathVariable String id);
+    ResponseEntity<CodeSnippetDTO> getCodeSnippetById(@PathVariable String id) throws CodeSnippetDoesNotExists_APIException;
     
     @GetMapping("/latest")
     ResponseEntity<List<CodeSnippetDTO>> getLatestCodeSnippets();

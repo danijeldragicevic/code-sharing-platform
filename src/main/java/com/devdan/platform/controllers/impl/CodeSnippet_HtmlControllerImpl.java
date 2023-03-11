@@ -2,6 +2,8 @@ package com.devdan.platform.controllers.impl;
 
 import com.devdan.platform.controllers.ICodeSnippet_HtmlController;
 import com.devdan.platform.dtos.CodeSnippetDTO;
+import com.devdan.platform.exceptions.CodeSnippetDoesNotExists_Exception;
+import com.devdan.platform.exceptions.CodeSnippetDoesNotExists_HtmlException;
 import com.devdan.platform.mappers.IModelMapper;
 import com.devdan.platform.models.CodeSnippet;
 import com.devdan.platform.services.ICodeSnippetService;
@@ -24,11 +26,15 @@ public class CodeSnippet_HtmlControllerImpl implements ICodeSnippet_HtmlControll
     }
 
     @Override
-    public String getCodeSnippetById(Model model, String id) {
-        CodeSnippetDTO codeSnippetDTO = mapper.mapToDto(service.getCodeSnippetById(id)); 
-        model.addAttribute("codeSnippetDTO", codeSnippetDTO);
-        
-        return "codeSnippetById_Page";
+    public String getCodeSnippetById(Model model, String id) throws CodeSnippetDoesNotExists_HtmlException {
+        try {
+            CodeSnippetDTO codeSnippetDTO = mapper.mapToDto(service.getCodeSnippetById(id)); 
+            model.addAttribute("codeSnippetDTO", codeSnippetDTO);
+            
+            return "codeSnippetById_Page";
+        } catch (CodeSnippetDoesNotExists_Exception e) {
+            throw new CodeSnippetDoesNotExists_HtmlException(model);
+        }
     }
 
     @Override

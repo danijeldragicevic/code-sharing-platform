@@ -1,0 +1,26 @@
+table {
+    border-collapse: collapse;
+    width: 30%;
+    margin: 0 0 10px;
+    background-color: whitesmoke;
+    border: solid 1px black;
+    padding: 5px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #282a35;
+    font-size: 18px;
+    color:#fff;
+    font-weight: bold;
+}
+td {
+    font-size: 16px;
+}
+tr:hover {
+    color:#fff;
+    background-color: brown;
+}

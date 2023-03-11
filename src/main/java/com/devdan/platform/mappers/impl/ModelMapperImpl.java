@@ -1,8 +1,10 @@
 package com.devdan.platform.mappers.impl;
 
 import com.devdan.platform.dtos.CodeSnippetDTO;
+import com.devdan.platform.dtos.AppErrorDTO;
 import com.devdan.platform.mappers.IModelMapper;
 import com.devdan.platform.models.CodeSnippet;
+import com.devdan.platform.models.AppError;
 import com.devdan.platform.utils.Util;
 
 public class ModelMapperImpl implements IModelMapper {
@@ -35,5 +37,29 @@ public class ModelMapperImpl implements IModelMapper {
         codeSnippetDTO.setViewsAllowed(codeSnippet.getViewsAllowed());
         
         return codeSnippetDTO;
+    }
+
+    @Override
+    public AppError mapToModel(AppErrorDTO appErrorDTO) {
+        AppError apperror = new AppError();
+        apperror.setTime(appErrorDTO.getTime());
+        apperror.setStatus(appErrorDTO.getStatus());
+        apperror.setError(appErrorDTO.getError());
+        apperror.setMessage(appErrorDTO.getMessage());
+        apperror.setPath(appErrorDTO.getPath());
+        
+        return apperror;
+    }
+
+    @Override
+    public AppErrorDTO mapToDto(AppError appError) {
+        AppErrorDTO appErrorDTO = new AppErrorDTO();
+        appErrorDTO.setTime(appError.getTime());
+        appErrorDTO.setStatus(appError.getStatus());
+        appErrorDTO.setError(appError.getError());
+        appErrorDTO.setMessage(appError.getMessage());
+        appErrorDTO.setPath(appError.getPath());
+
+        return appErrorDTO;
     }
 }
