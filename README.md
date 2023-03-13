@@ -22,10 +22,13 @@ Following endpoints will be exposed:
 
 | Methods   | Urls             | Action                                                   |
 |-----------|------------------|----------------------------------------------------------|
+|           |                  |                                                          |
 | GET       | /h2              | Access to the local database (username: sa, no password) |
+|           |                  |                                                          |
 | POST      | /api/code/new    | Create new code snippet                                  |
 | GET       | /api/code/:id    | Get code snippet by it's :id                             |
 | GET       | /api/code/latest | List 10 latest unrestricted code snippets                |
+|           |                  |                                                          |
 | GET       | /code/new        | Create new code snippet                                  |
 | GET       | /code/:id        | Get code snippet by it's :id                             |
 | GET       | /code/latest     | List 10 latest unrestricted code snippets                |
