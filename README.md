@@ -128,16 +128,16 @@ Response body:
 ```
 ### Web calls
 **Example 1:** POST /code/new <br>
-sc1 here...
+![sc1](https://user-images.githubusercontent.com/82412662/224753754-75b635a9-1553-469e-a7e1-06e35d93b5d1.png)
 
 **Example 2:** GET /code/ce22b058-2473-4b34-8135-f6201d25005d <br>
-sc2 here...
+![sc2](https://user-images.githubusercontent.com/82412662/224753853-10289d04-d1ae-41cb-ab45-f20653952a15.png)
 
 **Example 3:** GET /code/ce22b058-2473-4b34-8135-f6201d25005d (expired) <br>
-sc3 here...
+![sc3](https://user-images.githubusercontent.com/82412662/224753956-57bef0cb-98e0-407f-80e4-95e43580f72b.png)
 
 **Example 4:** GET /code/latest <br>
-sc4 here...
+![sc4](https://user-images.githubusercontent.com/82412662/224754030-a672d9a0-0bdc-47d8-88e1-66e5deb33292.png)
 
 # Licence
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
